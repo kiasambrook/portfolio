@@ -92,12 +92,12 @@ add a new project.</p>
 
 <br>
     <a href="projectadd"><button id="add" name="add" class="btn btn-primary shadow-sm rounded btn-lg px-4 me-sm-3">Add project</button></a>
-
         <br>
         <br>
         <h4 class="h4 mb-3 font-weight-normal">List of projects:</h4>  
         <?php
-            echo "<table class=\"table table-striped \" style=\"width:98%;\"\>
+        // perhaps make the table two columns and have dynamically generated pages for each project with an edit button!!!!
+            echo "<table class=\"table table-striped table-responsive  \" style=\"width:98%; font-size:85%;\"\>
             <tr class=\"thead-light\">
             <th scope=\"col\">id</th>
             <th scope=\"col\">name</th>
@@ -118,8 +118,8 @@ add a new project.</p>
                 echo "<td>".$project['short_desc']."</td>";
                 echo "<td>".$project['long_desc']."</td>";
                 echo "<td>".$project['image_path']."</td>";
-                echo "<td>".$project['url']."</td>";
-                echo "<td>".$project['git_url']."</td>";
+                echo "<td> <a href=\"".$project['url']."\">".$project['url']."</a></td>";
+                echo "<td> <a href=\"".$project['git_url']."\">".$project['git_url']."</a></td>";
                 echo "<td>".$project['file_name']."</td>";
                 echo "<td>".$project['completion_year']."</td>";
 
