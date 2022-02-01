@@ -22,6 +22,7 @@ if($username == null){
        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
        crossorigin="anonymous"
      />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
      <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
      <link 
@@ -95,33 +96,24 @@ add a new project.</p>
         <br>
         <br>
         <h4 class="h4 mb-3 font-weight-normal">List of projects:</h4>  
-        <?php
+        <?php   
         // perhaps make the table two columns and have dynamically generated pages for each project with an edit button!!!!
-            echo "<table class=\"table table-striped table-responsive  \" style=\"width:98%; font-size:85%;\"\>
+            echo "<table class=\" table table-striped table-responsive mx-auto w-auto   \" style=\"width:100%; font-size:100%;  margin: auto;\"\>
             <tr class=\"thead-light\">
-            <th scope=\"col\">id</th>
-            <th scope=\"col\">name</th>
-            <th scope=\"col\">short desc</th>
-            <th scope=\"col\">long desc</th>
-            <th scope=\"col\">image path</th>
-            <th scope=\"col\">url</th>
-            <th scope=\"col\">git url</th>
-            <th scope=\"col\">project name</th>
-            <th scope=\"col\">completion year</th>
-            <th scope=\"col\">completed?</th>
+            <th scope=\"col\">Project Name</th>
+            <th scope=\"col\">URL</th>
+            <th scope=\"col\">Git URL</th>
+            <th scope=\"col\">Completed?</th>
+            <th scope=\"col\">Edit</th>
+            <th scope=\"col\">Delete</th>
             </tr>
             ";
             $projects = $pdo->query('SELECT * FROM projects')->fetchAll();
             foreach($projects as $project){
-                echo "<tr> <td>".$project['id']."</td>";
+                echo "<tr>";
                 echo "<td>".$project['name']."</td>";
-                echo "<td>".$project['short_desc']."</td>";
-                echo "<td>".$project['long_desc']."</td>";
-                echo "<td>".$project['image_path']."</td>";
-                echo "<td> <a href=\"".$project['url']."\">".$project['url']."</a></td>";
-                echo "<td> <a href=\"".$project['git_url']."\">".$project['git_url']."</a></td>";
-                echo "<td>".$project['file_name']."</td>";
-                echo "<td>".$project['completion_year']."</td>";
+                echo "<td> <a href=\"".$project['url']."\">Site Link</a></td>";
+                echo "<td> <a href=\"".$project['git_url']."\">Github Link</a></td>";
 
                 if($project['completed'] == 1){
                     echo "<td>Completed</td>";
@@ -129,8 +121,14 @@ add a new project.</p>
                 else{
                     echo "<td>Inomplete</td>";
                 }
+
+                echo "<td class=\"text-center\"> <a href=\"project?name=".$project['file_name']."\"><i class=\"bi bi-pencil-square\" style=\"font-size: 1rem;\"></i></a></td>";
+                echo "<td class=\"text-center\"><button type=button style=\"border: 0px; background-color:transparent; \" data-bs-toggle=\"modal\" data-bs-target=\"#modalForm\" ><i class=\"bi bi-x\" style=\"font-size: 1rem; color: red;\"></i></button></td>";
+                echo "</tr>";
+
             }
 
+            echo "</table>";
         ?>
 </main>
 
