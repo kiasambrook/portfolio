@@ -97,7 +97,6 @@ add a new project.</p>
         <br>
         <h4 class="h4 mb-3 font-weight-normal">List of projects:</h4>  
         <?php   
-        // perhaps make the table two columns and have dynamically generated pages for each project with an edit button!!!!
             echo "<table class=\" table table-striped table-responsive mx-auto w-auto   \" style=\"width:100%; font-size:100%;  margin: auto;\"\>
             <tr class=\"thead-light\">
             <th scope=\"col\">Project Name</th>
@@ -108,23 +107,39 @@ add a new project.</p>
             <th scope=\"col\">Delete</th>
             </tr>
             ";
+        
+            // for each project echo into a new table row
             $projects = $pdo->query('SELECT * FROM projects')->fetchAll();
             foreach($projects as $project){
                 echo "<tr>";
                 echo "<td>".$project['name']."</td>";
-                echo "<td> <a href=\"".$project['url']."\">Site Link</a></td>";
-                echo "<td> <a href=\"".$project['git_url']."\">Github Link</a></td>";
 
+                // if no URL is provided, display warning message
+                if($project['url'] === null){
+                    echo "<td>No URL provided</td>";
+                }else{
+                    echo "<td> <a target=\"_blank\" href=\"".$project['url']."\">Site Link</a></td>";
+                }
+
+                // if no URL is provided, display warning message
+                if($project['git_url'] === null){
+                    echo "<td>No URL provided</td>";
+                }else{
+                echo "<td> <a target=\"_blank\" href=\"".$project['git_url']."\">Github Link</a></td>";
+                }
+
+                // check if project is completed and display different messages
                 if($project['completed'] == 1){
                     echo "<td>Completed</td>";
                 }
                 else{
-                    echo "<td>Inomplete</td>";
+                    echo "<td>Incomplete</td>";
                 }
 
-                echo "<td class=\"text-center\"> <a href=\"project?name=".$project['file_name']."\"><i class=\"bi bi-pencil-square\" style=\"font-size: 1rem;\"></i></a></td>";
+                echo "<td class=\"text-center\"> <a href=\"project?name=".$project['name']."\"><i class=\"bi bi-pencil-square\" style=\"font-size: 1rem;\"></i></a></td>";
                 echo "<td class=\"text-center\"><button type=button style=\"border: 0px; background-color:transparent; \" data-bs-toggle=\"modal\" data-bs-target=\"#modalForm\" ><i class=\"bi bi-x\" style=\"font-size: 1rem; color: red;\"></i></button></td>";
                 echo "</tr>";
+
 
             }
 
