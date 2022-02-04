@@ -482,6 +482,13 @@
               ><i class="fab fa-instagram fa-3x px-2"></i
             ></a>
 
+            <a
+              href="https://twitter.com/kiasambrookk"
+              target="_blank"
+              style="color: #000"
+              ><i class="fab fa-twitter fa-3x px-2"></i
+            ></a>
+
             <!-- Linkedin -->
             <a
               href="https://www.linkedin.com/in/kia-sambrook-70ab24153/"
@@ -501,6 +508,13 @@
         </div>
       </div>
     </section>
+
+      <!-- Copyright -->
+      <footer class="text-center text-lg-start bg-light text-muted">
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2022 Copyright: Kia Sambrook
+  </div>
+              </footer>
 
     <!-- Bootstrap Javascript tag -->
     <script
