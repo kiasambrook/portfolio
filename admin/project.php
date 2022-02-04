@@ -40,6 +40,8 @@ $project = $stmt->fetch(PDO::FETCH_ASSOC);
      <link rel="icon" href="images/favicon.ico">
 
      <link href="login.css" rel="stylesheet">
+
+     <script src="radiocheck.js"></script>
 </head>
 
 <body>
@@ -59,37 +61,40 @@ $project = $stmt->fetch(PDO::FETCH_ASSOC);
 
         <!-- project name -->
         <label for="name"class="sr-only">Name:</label>
-        <input type="text" name="name" id="name" placeholder="Name..."  class="form-control" >
+        <input type="text" name="name" id="name" placeholder="Name..."  class="form-control"  value="<?php echo $project_name; ?>">
         <br>
 
         <!-- short desc -->
         <label for="shortdesc"class="sr-only">Short Description:</label>
-        <textarea name="shortdesc" id="shortdesc" placeholder="Short Desc..." rows="2"  class="form-control" ></textarea>  
+        <textarea name="shortdesc" id="shortdesc" placeholder="Short Desc..." rows="2"  class="form-control" ><?php echo $project['short_desc']; ?></textarea>  
         <br> 
 
         <!-- long desc -->
         <label for="longdesc"class="sr-only">Long Description:</label>
-        <textarea name="longdesc" id="shortdesc" placeholder="Long Desc..." rows="4"  class="form-control" ></textarea>   
+        <textarea name="longdesc" id="shortdesc" placeholder="Long Desc..." rows="4"  class="form-control" ><?php echo $project['long_desc']; ?></textarea>   
         <br>
 
         <!-- file upload -->
+        <img style="width: 100%; border:solid 1px black;" src="<?php echo $project['image_path']; ?>">
+        <br>
+        <br>
         <label for="formfile"class="sr-only">Image Upload:</label>
         <input class="form-control" type="file" id="formFile" name="formFile" placeholder="Image upload..." accept="image/*" >
         <br>
 
         <!-- url -->
         <label for="url"class="sr-only">Site URL:</label>
-        <input type="url" name="url" id="url" placeholder="Project URL..."  size="30"  class="form-control">
+        <input type="url" name="url" id="url" placeholder="Project URL..."  size="30"  class="form-control" value="<?php echo $project['url']; ?>">
         <br>
 
         <!-- git url -->
         <label for="giturl"class="sr-only">Git URL:</label>
-        <input type="url" name="giturl" id="giturl" placeholder="Git Repository..." size="30"  class="form-control">
+        <input type="url" name="giturl" id="giturl" placeholder="Git Repository..." size="30"  class="form-control" value="<?php echo $project['git_url']; ?>">
         <br>
 
         <!-- project name -->
         <label for="projectname"class="sr-only">Project Name:</label>
-        <input type="text" name="projectname" id="projectname" placeholder="Project name..."  class="form-control" >
+        <input type="text" name="projectname" id="projectname" placeholder="Project name..."  class="form-control" value="<?php echo $project['file_name']; ?>" >
         <br>
 
         <!-- completed -->
@@ -109,13 +114,13 @@ $project = $stmt->fetch(PDO::FETCH_ASSOC);
         <div id="ifYes" style="display: none;">
         <br>
         <label for="year"class="sr-only">Completion Year:</label> 
-        <input type="number" min="1900" max="2099" step="1"  id="year" name="year" placeholder="Completion year..."  class="form-control"  /><br />
+        <input type="number" min="1900" max="2099" step="1"  id="year" name="year" placeholder="Completion year..."  class="form-control"  value="<?php echo $project['completion_year']; ?>"/><br />
         </div>
 
         <br>
 
         
-        <input type="submit" value="Add Project" name="submit" class="btn btn-lg btn-primary btn-block">
+        <input type="submit" value="Save Changes" name="submit" class="btn btn-lg btn-primary btn-block">
         
     </form>
 
