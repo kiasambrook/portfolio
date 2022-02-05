@@ -168,7 +168,7 @@ if(isset($_POST['submit'])){
 
         <!-- short desc -->
         <label for="shortdesc"class="sr-only">Short Description:</label>
-        <textarea name="shortdesc" id="shortdesc" placeholder="Short Desc..." rows="2"  class="form-control" required></textarea>  
+        <textarea name="shortdesc" maxlength ="101" id="shortdesc" placeholder="Short Desc..." rows="2"  class="form-control" required></textarea>  
         <br> 
 
         <!-- long desc -->

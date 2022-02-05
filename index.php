@@ -174,10 +174,10 @@
             <h2>About me</h2>
 
             <p class="lead mb-5">
-              I am Welsh student based in Neath and currently studying my final
+              I am Welsh student based from Neath and currently studying my final
               year of BSc Business Information Technology at Aberystwyth
               University. I am really interested in backend web development and
-              have spend my freetime developing these skills. My other interests
+               spend my freetime developing these skills. My other interests
               include UX design, computer building, and photo editing.
             </p>
 
@@ -364,10 +364,17 @@
                   foreach($projects as $project){
 
                     if($project['completed'] == 1){
-                      $status = "Completed";
+                      $status = "Completed " . $project['completion_year'];
                     }
                     else{
                       $status = "In progress";
+                    }
+
+                    if($project['git_url'] == null){
+                      $gitlink = "Git Coming Soon";
+                    }
+                    else{
+                      $gitlink = "View Git Code";
                     }
 
                     echo "<div class=\"col\">
@@ -375,34 +382,31 @@
                         <img
                         src=\"".$project['image_path']." \"
                         class=\"card-img-top border\"
+                        style=\"height:21vh; width:100%;\"
                         alt=\"project homepage\"
                       />
 
                         <div class=\"card-body\">
                             <h5 class=\"card-title\">".$project['name']."</h5>
-                            <h6>Status: ".$status."</h6>
+                            <h6>Status: ".$status." </h6>
                             <p class=\"card-text\">".$project['short_desc']."
-                            </p>
+                            </p>";
 
-                                <a
-                                  href=\"project?project=".$project['file_name']."\"
-                                  class=\"btn bg-lightb mb-3\"
-                                  >Read More
-                                </a>
-
-                                <br>
-
-                                <a
+                            if($project['url'] != null){
+                               
+                              echo "<a
                                   href=\"".$project['url']."\"
                                   target=\"_blank\"
-                                  class=\"btn bg-lightb\"
+                                  class=\"btn bg-lightb me-2\"
                                   >Visit Website
-                                </a>
-                                <a
+                                </a>";
+
+                            }
+                            echo"<a
                                   href=\"".$project['git_url']."\"
                                   target=\"_blank\"
                                   class=\"btn bg-lightb\"
-                                  >Visit Git Code
+                                  >".$gitlink."
                                 </a>
                          </div>
                   </div>
