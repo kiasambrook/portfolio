@@ -1,6 +1,21 @@
 <?php
 
-  require("db.php");
+  require("../db.php");
+
+  $sendflag = $_REQUEST['sendflag'];  
+if ( $sendflag == "send" )
+        {
+          $mail_to_send_to = "kia@kiasambrook.co.uk";
+          $from_email = "kia@kiasambrook.co.uk";
+          $name=$_REQUEST['name'];
+
+                $subject= "Message subject";
+                $email = $_REQUEST['email'] ;
+                $message= "\r\n" . "Name: $name" . "\r\n"; //get recipient name in contact form
+                $message = $message.$_REQUEST['message'] . "\r\n" ;//add message from the contact form to existing message(name of the client)
+                $headers = "From: $from_email" . "\r\n" . "Reply-To: $email"  ;
+                $a = mail( $mail_to_send_to, $subject, $message, $headers );
+        }
 
 ?>
 
@@ -429,14 +444,14 @@
               information using the form below:
             </p>
 
-            <form class="text-left" method="POST" action="mail.php">
+            <form class="text-left" method="POST">
               <div class="mb-3">
                 <label for="contact-name" class="form-label">Full name:</label>
                 <input
                   type="text"
                   class="form-control"
                   id="contact-name"
-                  name="contact-name"
+                  name="name"
                   placeholder="Your name..."
                   required
                 />
@@ -449,7 +464,7 @@
                   type="email"
                   class="form-control"
                   id="contact-email"
-                  name="contact-email"
+                  name="email"
                   placeholder="Your email..."
                   required
                 />
@@ -461,19 +476,15 @@
                 <textarea
                   class="form-control"
                   id="contact-message"
-                  name="contact-message"
+                  name="message"
                   placeholder="Enter your message..."
                   rows="3"
                   required
                 ></textarea>
               </div>
 
-              <button
-                type="submit"
-                class="btn btn-secondary btn-lg px-4 me-sm-3"
-              >
-                Sumbit
-              </button>
+
+              <input name="sendflag" type="submit" value="send" class="btn btn-secondary btn-lg px-4 me-sm-3"/>
             </form>
 
             <p class="lead mb-3 pt-5 pb-0 mb-0">Or find me on social media:</p>

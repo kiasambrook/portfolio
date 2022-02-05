@@ -1,6 +1,6 @@
 <?php
 session_start();
-require("../db.php");
+require("../../db.php");
 $username = $_SESSION['username'];
 $name = $_SESSION['name'];
 
