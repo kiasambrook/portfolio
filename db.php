@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
-$db = 'portfolio';
-$user = 'root';
+$db = '';
+$user = '';
 $password = '';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=UTF8";
